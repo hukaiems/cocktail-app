@@ -1,13 +1,19 @@
 import express from 'express';
 import axios from 'axios';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
-app.set('views', './views');  
+app.set('views', '../views');  
 
-app.use(express.static('public'));
+// it give the correct __dirname
+const __filename = fileURLToPath(import.meta.url); //import fullpath
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // tell express to handle form bodies
 app.use(express.urlencoded({extended: true}));
