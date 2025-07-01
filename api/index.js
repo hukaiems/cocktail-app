@@ -7,7 +7,6 @@ const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
-app.set('views', '../views');  
 
 // it give the correct __dirname
 const __filename = fileURLToPath(import.meta.url); //import fullpath
