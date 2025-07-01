@@ -5,7 +5,10 @@ const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
+app.set('views', './');  
+
 app.use(express.static('public'));
+
 // tell express to handle form bodies
 app.use(express.urlencoded({extended: true}));
 
@@ -17,12 +20,11 @@ axios.get(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`).then(re
 
 app.get('/', async (req, res)=> {
     try{
-        categories = response.data.drinks;
         // console.log(categories);
-        res.render('index.ejs', {categories, drinks: []});
+        res.render('index', {categories, drinks: []});
     } catch(error){
         console.log(error.message);
-        res.render('index.ejs', {categories, drinks: []});
+        res.render('index', {categories, drinks: []});
     }
 });
 
