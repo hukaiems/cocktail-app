@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 const __filename = fileURLToPath(import.meta.url); //import fullpath
 const __dirname = path.dirname(__filename);
 
+app.set('views', viewsPath || path.join(__dirname, '..', 'views'));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // tell express to handle form bodies
