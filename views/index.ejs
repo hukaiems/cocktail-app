@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Tailwind Background</title>
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-black via-dark-purple to-purple-900 relative"
+  >
+    <div class="flex w-full justify-center mt-16">
+      <div class="bg-white/10 backdrop-blur-md rounded-xl px-6 py-6">
+        <h1 class="text-white text-4xl">CHOOSE YOUR COCKTAIL BRAH</h1>
+      </div>
+    </div>
+
+    <!-- Cocktail icon in top-right -->
+    <div
+      class="absolute h-32 w-32 top-4 right-20"
+      style="transform: rotate(-10deg)"
+    >
+      <img src="/cocktail_sticker.png" alt="cocktail_sticker" />
+    </div>
+
+    <!-- Your content goes here -->
+    <div class="flex flex-col items-center justify-center mt-20">
+      <!-- placeholder -->
+      <h1 class="text-white text-4xl">Choose your category</h1>
+      <div class="flex flex-col justify-center items-center">
+        <form
+          class="mt-10 flex flex-col justify-center items-center"
+          method="POST"
+          action="/choose"
+        >
+          <select
+            name="chosenCategory"
+            class="text-white bg-white/10 rounded-xl shadow-lg transition px-4 py-3 mb-5"
+          >
+            <% categories.forEach(category => { %>
+            <option class="text-black" value="<%= category.strCategory %>">
+              <%= category.strCategory %>
+            </option>
+            <% }); %>
+          </select>
+          <button
+            type="submit"
+            class="bg-white/10 text-white rounded-xl py-2 shadow-lg transition px-1 py-1 mb-7 transform hover:scale-105 hover:shadow-2xl bg-gradient-to-r from-white/30 to-purple-900"
+          >
+            🍹 Find ur drink
+          </button>
+        </form>
+
+        <!-- this is the form sections -->
+        <div class="grid grid-cols-3 gap-3 w-[95%]">
+          <% drinks.forEach(drink => { %>
+          <div
+            class="bg-white/10 rounded-lg shadow-lg transition px-2 py-2 backdrop-blur-md flex gap-3 hover:scale-105"
+          >
+            <img
+              src="<%= drink.strDrinkThumb %>"
+              alt="<%= drink.strDrink %>"
+              class="h-36 w-36"
+            />
+            <h1 class="text-2xl text-white"><%= drink.strDrink %></h1>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <footer
+    class="w-full mt-16 py-6 text-center text-white text-sm backdrop-blur-sm"
+  >
+    <p>
+      Data sourced from
+      <a
+        href="https://www.thecocktaildb.com/api.php"
+        target="_blank"
+        class="underline hover:text-purple-400 transition"
+      >
+        TheCocktailDB API
+      </a>
+      🍸
+    </p>
+  </footer>
+</html>
